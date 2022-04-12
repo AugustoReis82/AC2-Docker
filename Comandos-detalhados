@@ -1,0 +1,257 @@
+>>> Criar instancia no Docker (ALMENTAR O CONSOLE ALT+ENTER)
+    https://github.com/antoniodiasabc/defciberac3
+
+
+1º Ver a versão do docker
+docker -v
+
+2º clonar seu repositório do github
+git clone https://github.com/antoniodiasabc/defciberac3
+
+3º iNSTALAR mySql
+docker pull mysql:5.7
+
+4º Rodar um container da imagem (comandinho magico)
+docker run --name mysqlteste -e MYSQL_ROOT_PASSWORD=admin -d mysql
+
+5º Verifica se o container esta rodando
+docker ps
+
+6º Criar tabela
+docker exec -it mysqlteste /bin/bash
+
+7º Se conectar no container
+mysql -uroot -p (depois coloca a senha:admin)
+
+8º Verificar os schmas
+show schemas;
+
+9º Criar schema;
+create schema teste;
+
+10º Usar o schema
+use teste;
+
+11º Mostrar tabelas
+show tables;
+
+12º Montar tabela
+CREATE TABLE aula_mvc
+(
+user_id BIGINT NOT NULL AUTO_INCREMENT,
+user_name VARCHAR(45) NULL,
+user_username VARCHAR(45) NULL,
+user_password VARCHAR(45) NULL,
+PRIMARY KEY (user_id));
+
+
+13º mostrar a tabela
+show tables;
+
+14º selecionar a tabela que você criou
+select * from aula_mvc;
+
+15º mostrar os campos da tabela
+desc aula_mvc;
+
+-------------------------------------------------------------------------------
+DAR EXIT ATÉ SAIR E ABRIR OUTRA SESSÃO
+
+16 - Verificar o IP
+docker network inspect bridge
+
+17 - Clone o repositorios
+git clone https://github.com/antoniodiasabc/defciberac3
+
+18 - Entre no repositório
+cd defciberac3/
+
+19 - Listar os repositórios
+ls -lrt
+
+20 - obs: aparecerá sempre o primeiro app.py, para alterar sua ordem de o comando
+cp app3.py app.py (primero acima do segundo) e depois liste denovo
+
+21 - Construir uma imagem a partir de um DockerFile
+docker image build -t python-hello-world .
+
+22 - Rodar image e criar a porta(externa interna)
+docker run -p 5001:5000 -d python-hello-world
+
+23 - veriicar os container
+docker ps
+
+24 - verificar se esta rodando certinho
+docker logs -f "NAME"
+
+25 - Depois minimize a janela e clique em "OPEN PORT" 
+> coloque a porta extena 5001 e clique em OK
+
+26 - Ao fim crie mais outras imagens novas e coloque portas diferentes para 
+rodar os outros arquivos .py ( EX: 5002, 5003, 5004 ...)
+Obs:as portas externas e internas podem ser iguais
+
+--------------------------------------------------------------------------------
+
+LEMBRETES: COMANDOS BASICOS PARA PYYHON E FLASK
+1 - FROM python:3.7-slin
+2 - RUN pip install flask
+3 - COPY app.py /app.py
+4 - CMD ["python","app.py"]
+
+python:3.7-slin
+RUN pip install flask
+COPY app.py /app.py
+CMD ["python","app.py"]
+
+
+________________________ 17-03-22 DOCKER COMPOSE ___________________________
+	    CRIANDO DOCKER COMPOSE DE MICROSERVIÇOS POSTGRES 
+
+
+   20  git clone https://github.com/antoniodiasabc/docker_postgres
+   21  cd docker_postgres/
+   22  ls
+   23  docker-compose up -d 
+   25  docker-compose ps
+   26  docker ps
+   27  docker logs 5f093329e552
+   28  docker ps
+       Entrar no container
+   29  docker exec -it 196baa4a9496 /bin/bash
+   30  docker ps
+       Criar tabela
+   31  docker-compose run web /usr/local/bin/python create_db.py
+   32  docker exec -it 196baa4a9496 /bin/bash
+   33  docker ps
+   34  docker exec -it 196baa4a9496 /bin/bash
+
+>>>>> para entrar no banco e conferir dados inseridos <<<<<<<<
+	docker exec -it 196baa4a9496 /bin/bash
+	su postgres
+	psql -U sis_web
+	select * from posts;
+
+OBS: CRIAR IMAGEM
+docker image build -t python-hello-world .
+
+OBS: SE QUISER RODAR OUTRO CONTAINER: 
+docker run -p 5051:5050 -d python-hello-world 
+** se tiver duvida da porta acesse o arquivo app.py (vim app.py)
+   e verifique a port usada, mantenha aultima e mude a primeira
+
+
+
+########################################
+microserviço: tabela de código independente, evolutiva e isolada
+comando para ver histórico: history
+comando para copiar na janela de comando: ctrl+fn insert
+comando para copiar na janela de comando: shift+fn insert
+comando para entrar em um arquivo: vim NOME
+comando para sair do arquivo: :q! (sem salavar)
+comando voltar 1 pasta: \q 
+comando listar as imagens: docker images
+
+Digite :w para salvar as modificações, 
+:wq para salvar e sair do vi e 
+:q! para sair sem salvar. 
+Proceda como no caso da edição de um arquivo.
+################################################
+
+
+docker com 2 container 1 - mysql 5.7 2 - flask web
+docker ps
+
+docker network inspect bridge
+
+pip install flask-mysql
+
+docker image build -t python-web .
+
+docker run -p 5050:5050 -d python-web
+
+docker pull mysql:5.7
+
+docker run --name mysql5 -e MYSQL_ROOT_PASSWORD=mudar123 -p 3307:3307 -d mysql:5.7
+
+git clone https://github.com/antoniodiasabc/docker2
+
+cd docker2
+
+docker-compose up -d
+
+docker-compose ps
+
+docker ps
+
+docker exec -it 93bee0f56be7 /bin/bash  (mysql:5.7)
+
+mysql -uroot -p 
+
+coloque o password: mudar123
+
+show schemas;
+
+create schema teste;
+
+use teste;
+
+show tables;
+
+CREATE TABLE tbl_user 
+( 
+user_id BIGINT NOT NULL AUTO_INCREMENT, 
+user_name VARCHAR(45) NULL, 
+user_username VARCHAR(45) NULL, 
+user_password VARCHAR(45) NULL, 
+PRIMARY KEY (user_id));
+
+select * from tbl_user;
+
+>>> caso dê ERRO 
+verifique senão pode ser os ips:
+dê exit e saia até a pasta raiz
+digite vim app3.py ( la dentro verifique o 
+ip da web se correnponde ao mesmo do configurado)
+usar o comando: docker network inspect bridge 
+Se estiverem diferente edite o arquivo app3.py (linha 13)
+colocando o mesmo ip que esta no WEB. depois pare e start a aplicação
+usando os comandos.
+
+docker-compose ps
+docker-compose stop
+docker-compose start
+
+
+
+
+pip install flask-mysql
+
+docker image build -t python-web .
+
+docker run -p 5050:5050 -d python-web
+
+DOCKER COMPOSE
+
+docker-compose up
+
+docker network inspect bridge
+
+docker-compose ps
+
+conforme id do container retornado do comando acima
+docker exec -it e9ce83871c83 /bin/bash
+
+create schema teste;
+
+use teste;
+
+CREATE TABLE tbl_user ( user_id BIGINT NOT NULL AUTO_INCREMENT, user_name VARCHAR(45) NULL, user_username VARCHAR(45) NULL, user_password VARCHAR(45) NULL, PRIMARY KEY (user_id));
+
+DELIMITER // CREATE PROCEDURE sp_createUser( IN p_name VARCHAR(20), IN p_username VARCHAR(20), IN p_password VARCHAR(20)) BEGIN IF ( select exists (select 1 from tbl_user where user_username = p_username) ) THEN
+select 'Username Exists !!';
+ELSE
+insert into tbl_user ( user_name, user_username, user_password ) values ( p_name, p_username, p_password );
+END IF; END // DELIMITER ;
+
+https://labs.play-with-docker.com/p/c8o0ea7njsv000852utg#c8o0ea7n_c8o15b7njsv0008530eg
