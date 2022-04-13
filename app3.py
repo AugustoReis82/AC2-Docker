@@ -29,7 +29,7 @@ def signUp():
     try:
         _name = request.form['inputName']
         _email = request.form['inputEmail']
-        _enderec = request.form['inputenderec']
+        _enderec = request.form['inputEnderec']
 
         print(_name)
         print(_email)
@@ -42,8 +42,8 @@ def signUp():
             
             conn = mysql.connect()
             cursor = conn.cursor()
-            _hashed_enderec = _enderec
-            cursor.callproc('sp_createUser',(_name,_email,_hashed_enderec))
+            _enderec = _enderec
+            cursor.callproc('sp_createUser',(_name,_email,_enderec))
             data = cursor.fetchall()
             print(data);
 
