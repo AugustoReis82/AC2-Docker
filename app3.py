@@ -29,21 +29,21 @@ def signUp():
     try:
         _name = request.form['inputName']
         _email = request.form['inputEmail']
-        _endereco = request.form['inputendereco']
+        _enderec = request.form['inputenderec']
 
         print(_name)
         print(_email)
-        print(_endereco)
+        print(_enderec)
 
         # validate the received values
-        if _name and _email and _endereco:
+        if _name and _email and _enderec:
             
             # All Good, let's call MySQL
             
             conn = mysql.connect()
             cursor = conn.cursor()
-            _hashed_endereco = _endereco
-            cursor.callproc('sp_createUser',(_name,_email,_hashed_endereco))
+            _hashed_enderec = _enderec
+            cursor.callproc('sp_createUser',(_name,_email,_hashed_enderec))
             data = cursor.fetchall()
             print(data);
 
