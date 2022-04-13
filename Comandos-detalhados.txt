@@ -1,12 +1,12 @@
->>> Criar instancia no Docker (ALMENTAR O CONSOLE ALT+ENTER)
-    https://github.com/antoniodiasabc/defciberac3
+>>> Criar instancia no Docker (AUMENTAR O CONSOLE ALT+ENTER)
+    https://github.com/AugustoReis82/AC2-Docker.git
 
 
 1º Ver a versão do docker
 docker -v
 
 2º clonar seu repositório do github
-git clone https://github.com/antoniodiasabc/defciberac3
+git clone https://github.com/AugustoReis82/AC2-Docker.git
 
 3º iNSTALAR mySql
 docker pull mysql:5.7
@@ -36,13 +36,7 @@ use teste;
 show tables;
 
 12º Montar tabela
-CREATE TABLE aula_mvc
-(
-user_id BIGINT NOT NULL AUTO_INCREMENT,
-user_name VARCHAR(45) NULL,
-user_username VARCHAR(45) NULL,
-user_password VARCHAR(45) NULL,
-PRIMARY KEY (user_id));
+CREATE TABLE tbl_user ( user_id BIGINT NOT NULL AUTO_INCREMENT, user_name VARCHAR(45) NULL, user_username VARCHAR(45) NULL, user_password VARCHAR(45) NULL, PRIMARY KEY (user_id));
 
 
 13º mostrar a tabela
@@ -61,7 +55,7 @@ DAR EXIT ATÉ SAIR E ABRIR OUTRA SESSÃO
 docker network inspect bridge
 
 17 - Clone o repositorios
-git clone https://github.com/antoniodiasabc/defciberac3
+git clone https://github.com/AugustoReis82/AC2-Docker.git
 
 18 - Entre no repositório
 cd defciberac3/
@@ -174,7 +168,7 @@ docker pull mysql:5.7
 
 docker run --name mysql5 -e MYSQL_ROOT_PASSWORD=mudar123 -p 3307:3307 -d mysql:5.7
 
-git clone https://github.com/antoniodiasabc/docker2
+git clone https://github.com/AugustoReis82/AC2-Docker.git
 
 cd docker2
 
@@ -208,7 +202,7 @@ PRIMARY KEY (user_id));
 
 select * from tbl_user;
 
->>> caso dê ERRO 
+>>> caso dê ERRO DE CONEXÃO COM BD
 verifique senão pode ser os ips:
 dê exit e saia até a pasta raiz
 digite vim app3.py ( la dentro verifique o 
